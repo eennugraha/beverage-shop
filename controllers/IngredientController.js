@@ -40,8 +40,7 @@ class IngredientController {
     try {
       const id = +req.params.id;
       const { name, stock } = req.body;
-      let result = await ingredient.update(
-        {
+      let result = await ingredient.update({
           name, stock
         },
         { where: { id } }

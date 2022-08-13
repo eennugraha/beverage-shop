@@ -10,15 +10,64 @@ class CategoryController {
     }
   }
 
-  static createPage(req, res) {}
+  static addPage(req, res) {
+    res.json({
+      message: "Add Category Page",
+    });
+  }
 
-  static async create(req, res) {}
+  static async add(req, res) {
+    try {
+      const { name } = req.body;
+      let result = await category.create({
+        name,
+      });
+      res.json(result);
+    } catch (err) {
+      res.json(err);
+    }
+  }
 
-  static editPage(req, res) {}
+  static editPage(req, res) {
+    res.json({
+      message: "Edit Category Page",
+    });
+  }
 
-  static async edit(req, res) {}
+  // prettier-ignore
+  static async edit(req, res) {
+    try {
+      const id = +req.params.id;
+      const { name } = req.body;
+      let result = await category.update({
+          name
+        },
+        { where: { id } }
+      );
+      result[0] === 1
+        ? res.json({ message: `Category with id: ${id} has been updated!` })
+        : res.json({ message: `Category with id: ${id} is not found!` });
+    } catch (err) {
+      res.json(err);
+    }
+  }
 
-  static async delete(req, res) {}
+  static async delete(req, res) {
+    try {
+      const id = +req.params.id;
+      let resultCategory = await category.destroy({
+        where: { id },
+      });
+      // let resultMix = await mix.destroy({
+      //   where: { ingredientId: id },
+      // });
+      resultCategory === 1
+        ? res.json({ message: `Category with id: ${id} has been deleted!` })
+        : res.json({ message: `Category with id: ${id} is not found!` });
+    } catch (err) {
+      res.json(err);
+    }
+  }
 }
 
 module.exports = CategoryController;
