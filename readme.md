@@ -27,7 +27,7 @@
 
 [![Beverage Shop][product-screenshot]](https://example.com)
 
-5W1H
+Aplikasi Beverage Shop adalah aplikasi untuk mengelola data toko minuman. Aplikasi ini dapat membantu pemilik toko minuman dalam mengelola data minuman yang dimiliki, sehingga dapat lebih terorganisir.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -181,7 +181,7 @@ Ingredients
   // response
     {
     "id": 14,
-    "name": "Orange",
+    "name": "Jeruk",
     "stock": 150,
     "updatedAt": "2022-08-14T14:10:53.393Z",
     "createdAt": "2022-08-14T14:10:53.393Z"
