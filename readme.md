@@ -62,6 +62,8 @@ npx sequelize-cli model:generate --name ingredient --attributes name:string,stoc
 npx sequelize-cli model:generate --name mix --attributes amount:integer,drinkId:integer,ingredientId:integer
 ```
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### Endpoints
 
 This is an example of how to list things you need to use the software and how to install them.
@@ -94,6 +96,8 @@ This is an example of how to list things you need to use the software and how to
 | GET    | /mixes/edit/:id         | Menampilkan halaman form untuk mengedit data mixes berdasarkan id                        |
 | POST   | /mixes/edit/:id         | Menerima data yang dikirim dari halaman `/mixes/edit/:id` untuk melakukan _update_       |
 | GET    | /ingredients/delete/:id | Melakukan _delete_ data mix berdasarkan `id` yang dikirimkan                             |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### API Documentation
 
@@ -468,6 +472,8 @@ mix
     message: 'Category with id: 3 has been deleted!'
   }
   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 [product-screenshot]: public/screenshot-homepage.png
 [product-erd]: public/erd.png
