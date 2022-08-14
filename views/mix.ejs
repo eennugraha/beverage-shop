@@ -48,7 +48,7 @@
         <table class="table table-striped table-hover">
           <thead class="table-dark">
             <tr>
-              <th>ID</th>
+              <th>Code</th>
               <th>Drink</th>
               <th>Ingredient</th>
               <th>Amount</th>
@@ -59,13 +59,13 @@
             <% mixes.forEach(mix => { %>
             <tr>
               
-              <td><%= mix.id %></td>
+              <td><%= mix.drinkId %><%= mix.ingredientId %></td>
               <td><%= mix.drinkId ? (mix.drink ? mix.drink.name : '-') : '-' %></td>
               <td><%= mix.ingredientId ? (mix.ingredient ? mix.ingredient.name : '-') : '-' %></td>
               <td><%= mix.amount %></td>
               <td>
-                <a class="fa-solid fa-pen-to-square" href="/mixes/edit/<%= mix.id %>"></a>
-                <a class="fa-solid fa-trash-can" href="/mixes/delete/<%= mix.id %>"></a>
+                <a class="fa-solid fa-pen-to-square" href="/mixes/edit/<%= mix.drinkId %>/<%= mix.ingredientId %>"></a>
+                <a class="fa-solid fa-trash-can" href="/mixes/delete/<%= mix.drinkId %>/<%= mix.ingredientId %>"></a>
               </td>
             </tr>
             <% }) %>

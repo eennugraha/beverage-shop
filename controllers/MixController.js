@@ -36,25 +36,33 @@ class MixController {
     }
   }
 
-  static editPage(req, res) {
-    res.json({
-      message: "Edit Mix Page",
-    });
+  static async editPage(req, res) {
+    try {
+      const dId = +req.params.dId;
+      const iId = +req.params.iId;
+      const result = await mix.findOne({
+        where: { drinkId: dId, ingredientId: iId },
+      });
+      const drinks = await drink.findAll();
+      const ingredients = await ingredient.findAll();
+      res.render("mixEditPage.ejs", { result, drinks, ingredients });
+    } catch (err) {
+      res.json(err);
+    }
   }
 
   // prettier-ignore
   static async edit(req, res) {
     try {
-      const id = +req.params.id;
+      const dId = +req.params.dId;
+      const iId = +req.params.iId;
       const { amount, drinkId, ingredientId } = req.body;
       let result = await mix.update({
         amount, drinkId, ingredientId
         },
-        { where: { id } }
+        { where: { drinkId: dId, ingredientId: iId } }
       );
-      result[0] === 1
-        ? res.json({ message: `Mix with id: ${id} has been updated!` })
-        : res.json({ message: `Mix with id: ${id} is not found!` });
+      res.redirect('/mixes')
     } catch (err) {
       res.json(err);
     }
@@ -62,9 +70,10 @@ class MixController {
 
   static async delete(req, res) {
     try {
-      const id = +req.params.id;
+      const dId = +req.params.dId;
+      const iId = +req.params.iId;
       let resultMix = await mix.destroy({
-        where: { id },
+        where: { drinkId: dId, ingredientId: iId },
       });
       res.redirect("/mixes");
     } catch (err) {

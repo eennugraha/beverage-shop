@@ -11,13 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       mix.belongsTo(models.ingredient, {
         foreignKey: "ingredientId",
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        hooks: true,
       });
       mix.belongsTo(models.drink, {
         foreignKey: "drinkId",
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        hooks: true,
       });
     }
   }

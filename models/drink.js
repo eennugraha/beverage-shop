@@ -9,14 +9,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      drink.belongsTo(models.category, {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-      });
+      drink.belongsTo(models.category);
       drink.belongsToMany(models.ingredient, {
         through: models.mix,
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
+        hooks: true,
       });
     }
   }

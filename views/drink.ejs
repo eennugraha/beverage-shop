@@ -61,7 +61,7 @@
               <td><%= drink.id %></td>
               <td><%= drink.name %></td>
               <td><%= drink.price %></td>
-              <td><%= drink.categoryId ? drink.category.name : '-' %></td>
+              <td><%= drink.categoryId ? (drink.category ? drink.category.name : '-') : '-' %></td>
               <td>
                 <a class="fa-solid fa-pen-to-square" href="/drinks/edit/<%= drink.id %>"></a>
                 <a class="fa-solid fa-trash-can" href="/drinks/delete/<%= drink.id %>"></a>

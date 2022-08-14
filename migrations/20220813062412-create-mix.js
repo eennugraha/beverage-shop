@@ -8,14 +8,32 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      secondId: {
+        allowNull: false,
+        autoIncrement: true,
+        unique: true,
+        type: Sequelize.INTEGER,
+      },
       amount: {
         type: Sequelize.INTEGER,
       },
       drinkId: {
         type: Sequelize.INTEGER,
+        // references: {
+        //   model: "drinks",
+        //   key: "id",
+        //   onDelete: "CASCADE",
+        //   onUpdate: "CASCADE",
+        // },
       },
       ingredientId: {
         type: Sequelize.INTEGER,
+        // references: {
+        //   model: "ingredients",
+        //   key: "id",
+        //   onDelete: "CASCADE",
+        //   onUpdate: "CASCADE",
+        // },
       },
       createdAt: {
         allowNull: false,
