@@ -136,6 +136,31 @@ This is an example of how to list things you need to use the software and how to
   Home Page
   ```
 
+- GET '/ingredients'
+
+  ```sh
+  // request
+  localhost:3000/ingredients
+
+  // response
+    [
+        {
+            "id": 1,
+            "name": "Water",
+            "stock": 1000,
+            "createdAt": "2022-08-14T08:24:40.041Z",
+            "updatedAt": "2022-08-14T08:24:40.041Z"
+        },
+        {
+            "id": 2,
+            "name": "Ice",
+            "stock": 1000,
+            "createdAt": "2022-08-14T08:24:50.092Z",
+            "updatedAt": "2022-08-14T08:24:50.092Z"
+        }
+    ]
+  ```
+
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._

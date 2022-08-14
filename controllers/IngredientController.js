@@ -6,7 +6,8 @@ class IngredientController {
       let ingredients = await ingredient.findAll({
         order: [["id", "asc"]],
       });
-      res.render("ingredient.ejs", { ingredients });
+      // res.render("ingredient.ejs", { ingredients });
+      res.json(ingredients);
     } catch (err) {
       res.json(err);
     }

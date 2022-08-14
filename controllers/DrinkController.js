@@ -88,26 +88,18 @@ class DrinkController {
         },
         include: [drink, ingredient],
       });
-
-      let ingredientsOfDrink = result.map((element) => {
-        return [element.ingredient.dataValues, element.amount];
-      });
-      // res.json(ingredientsOfDrink);
-      let resultList = {
-        ...result[0].drink.dataValues,
-        ingredientsOfDrink,
-      };
-
-      // res.render("index.ejs");
-
-      // const tes = Object.keys(ingredientsOfDrink).length;
-      // res.json(tes);
-
-      // console.log(resultList.ingredientsOfDrink);
-      // res.json(resultList);
-      res.render("drinkIngredients.ejs", { ingredientsOfDrink });
-      // console.log(resultList);
-      // res.render("drinkIngredients.ejs", { resultList });
+      if (result.length === 0) {
+        res.redirect("/drinks");
+      } else {
+        let ingredientsOfDrink = result.map((element) => {
+          return [element.ingredient.dataValues, element.amount];
+        });
+        let resultList = {
+          ...result[0].drink.dataValues,
+          ingredientsOfDrink,
+        };
+        res.render("drinkIngredients.ejs", { ingredientsOfDrink });
+      }
     } catch (err) {
       res.json(err);
     }
