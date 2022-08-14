@@ -19,7 +19,7 @@
     </li>
     <li><a href="#database-creation-&-migration">Database Creation & Migration</a></li>
     <li><a href="#endpoints">Endpoints</a></li>
-    <li><a href="#documentation">API Documentation</a></li>
+    <li><a href="#documentation">Documentation</a></li>
   </ol>
 </details>
 
@@ -99,7 +99,7 @@ This is an example of how to list things you need to use the software and how to
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### API Documentation
+### Documentation
 
 - GET '/'
 
