@@ -1,4 +1,4 @@
-const { category } = require("../models");
+const { category, drink } = require("../models");
 
 class CategoryController {
   static async getCategories(req, res) {
@@ -64,10 +64,9 @@ class CategoryController {
       let resultCategory = await category.destroy({
         where: { id },
       });
-      // let resultMix = await mix.destroy({
-      //   where: { ingredientId: id },
-      // });
-
+      let resultDrink = await drink.destroy({
+        where: { categoryId: id },
+      });
       res.redirect("/categories");
     } catch (err) {
       res.json(err);

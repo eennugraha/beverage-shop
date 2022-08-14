@@ -66,9 +66,9 @@ class IngredientController {
       let resultIngredient = await ingredient.destroy({
         where: { id },
       });
-      // let resultMix = await mix.destroy({
-      //   where: { ingredientId: id },
-      // });
+      let resultMix = await mix.destroy({
+        where: { ingredientId: id },
+      });
       res.redirect("/ingredients");
     } catch (err) {
       res.json(err);

@@ -68,9 +68,9 @@ class DrinkController {
       let resultDrink = await drink.destroy({
         where: { id },
       });
-      // let resultMix = await mix.destroy({
-      //   where: { ingredientId: id },
-      // });
+      let resultMix = await mix.destroy({
+        where: { drinkId: id },
+      });
 
       res.redirect("/drinks");
     } catch (err) {
@@ -92,14 +92,22 @@ class DrinkController {
       let ingredientsOfDrink = result.map((element) => {
         return [element.ingredient.dataValues, element.amount];
       });
-
+      // res.json(ingredientsOfDrink);
       let resultList = {
         ...result[0].drink.dataValues,
         ingredientsOfDrink,
       };
 
+      // res.render("index.ejs");
+
+      // const tes = Object.keys(ingredientsOfDrink).length;
+      // res.json(tes);
+
       // console.log(resultList.ingredientsOfDrink);
-      res.json(resultList);
+      // res.json(resultList);
+      res.render("drinkIngredients.ejs", { ingredientsOfDrink });
+      // console.log(resultList);
+      // res.render("drinkIngredients.ejs", { resultList });
     } catch (err) {
       res.json(err);
     }

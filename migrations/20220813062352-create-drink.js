@@ -16,12 +16,6 @@ module.exports = {
       },
       categoryId: {
         type: Sequelize.INTEGER,
-        // references: {
-        //   model: "categories",
-        //   key: "id",
-        //   onDelete: "CASCADE",
-        //   onUpdate: "CASCADE",
-        // },
       },
       createdAt: {
         allowNull: false,
