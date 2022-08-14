@@ -9,8 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      mix.belongsTo(models.ingredient, { foreignKey: "ingredientId" });
-      mix.belongsTo(models.drink, { foreignKey: "drinkId" });
+      mix.belongsTo(models.ingredient, {
+        foreignKey: "ingredientId",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+      mix.belongsTo(models.drink, {
+        foreignKey: "drinkId",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   mix.init(

@@ -3,17 +3,21 @@ const { category } = require("../models");
 class CategoryController {
   static async getCategories(req, res) {
     try {
-      let categories = await category.findAll();
-      res.json(categories);
+      let categories = await category.findAll({
+        order: [["id", "asc"]],
+      });
+      res.render("category.ejs", { categories });
     } catch (err) {
       res.json(err);
     }
   }
 
-  static addPage(req, res) {
-    res.json({
-      message: "Add Category Page",
-    });
+  static async addPage(req, res) {
+    try {
+      res.render("categoryAddPage.ejs");
+    } catch (err) {
+      res.json(err);
+    }
   }
 
   static async add(req, res) {
@@ -22,16 +26,20 @@ class CategoryController {
       let result = await category.create({
         name,
       });
-      res.json(result);
+      res.redirect("/categories");
     } catch (err) {
       res.json(err);
     }
   }
 
-  static editPage(req, res) {
-    res.json({
-      message: "Edit Category Page",
-    });
+  static async editPage(req, res) {
+    try {
+      const id = +req.params.id;
+      const result = await category.findByPk(id);
+      res.render("categoryEditPage.ejs", { result });
+    } catch (err) {
+      res.json(err);
+    }
   }
 
   // prettier-ignore
@@ -44,9 +52,7 @@ class CategoryController {
         },
         { where: { id } }
       );
-      result[0] === 1
-        ? res.json({ message: `Category with id: ${id} has been updated!` })
-        : res.json({ message: `Category with id: ${id} is not found!` });
+      res.redirect('/categories')
     } catch (err) {
       res.json(err);
     }
@@ -61,9 +67,8 @@ class CategoryController {
       // let resultMix = await mix.destroy({
       //   where: { ingredientId: id },
       // });
-      resultCategory === 1
-        ? res.json({ message: `Category with id: ${id} has been deleted!` })
-        : res.json({ message: `Category with id: ${id} is not found!` });
+
+      res.redirect("/categories");
     } catch (err) {
       res.json(err);
     }

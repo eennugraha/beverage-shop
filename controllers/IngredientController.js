@@ -3,17 +3,22 @@ const { ingredient, mix } = require("../models");
 class IngredientController {
   static async getIngredients(req, res) {
     try {
-      let ingredients = await ingredient.findAll();
-      res.json(ingredients);
+      let ingredients = await ingredient.findAll({
+        order: [["id", "asc"]],
+      });
+      res.render("ingredient.ejs", { ingredients });
     } catch (err) {
       res.json(err);
     }
   }
 
-  static addPage(req, res) {
-    res.json({
-      message: "Add Ingredient Page",
-    });
+  static async addPage(req, res) {
+    try {
+      const ingredients = await ingredient.findAll();
+      res.render("ingredientAddPage.ejs", { ingredients });
+    } catch (err) {
+      res.json(err);
+    }
   }
 
   // prettier-ignore
@@ -23,16 +28,20 @@ class IngredientController {
       let result = await ingredient.create({
         name, stock
       });
-      res.json(result);
+      res.redirect('/ingredients')
     } catch (err) {
       res.json(err);
     }
   }
 
-  static editPage(req, res) {
-    res.json({
-      message: "Edit Ingredient Page",
-    });
+  static async editPage(req, res) {
+    try {
+      const id = +req.params.id;
+      const result = await ingredient.findByPk(id);
+      res.render("ingredientEditPage.ejs", { result });
+    } catch (err) {
+      res.json(err);
+    }
   }
 
   // prettier-ignore
@@ -45,9 +54,7 @@ class IngredientController {
         },
         { where: { id } }
       );
-      result[0] === 1
-        ? res.json({ message: `Ingredient with id: ${id} has been updated!` })
-        : res.json({ message: `Ingredient with id: ${id} is not found!` });
+      res.redirect('/ingredients')
     } catch (err) {
       res.json(err);
     }
@@ -62,9 +69,7 @@ class IngredientController {
       // let resultMix = await mix.destroy({
       //   where: { ingredientId: id },
       // });
-      resultIngredient === 1
-        ? res.json({ message: `Ingredient with id: ${id} has been deleted!` })
-        : res.json({ message: `Ingredient with id: ${id} is not found!` });
+      res.redirect("/ingredients");
     } catch (err) {
       res.json(err);
     }

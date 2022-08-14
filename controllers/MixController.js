@@ -5,18 +5,22 @@ class MixController {
     try {
       let mixes = await mix.findAll({
         include: [drink, ingredient],
+        order: [["drinkId", "asc"]],
       });
-      // console.log(mixes);
-      res.json(mixes);
+      res.render("mix.ejs", { mixes });
     } catch (err) {
       res.json(err);
     }
   }
 
-  static addPage(req, res) {
-    res.json({
-      message: "Add Mix Page",
-    });
+  static async addPage(req, res) {
+    try {
+      const drinks = await drink.findAll();
+      const ingredients = await ingredient.findAll();
+      res.render("mixAddPage.ejs", { value: null, drinks, ingredients });
+    } catch (err) {
+      res.json(err);
+    }
   }
 
   // prettier-ignore
@@ -26,7 +30,7 @@ class MixController {
       let result = await mix.create({
         amount, drinkId, ingredientId
       });
-      res.json(result);
+      res.redirect('/mixes');
     } catch (err) {
       res.json(err);
     }
@@ -62,9 +66,7 @@ class MixController {
       let resultMix = await mix.destroy({
         where: { id },
       });
-      resultMix === 1
-        ? res.json({ message: `Mix with id: ${id} has been deleted!` })
-        : res.json({ message: `Mix with id: ${id} is not found!` });
+      res.redirect("/mixes");
     } catch (err) {
       res.json(err);
     }

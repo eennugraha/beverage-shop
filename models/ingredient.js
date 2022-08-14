@@ -9,7 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      ingredient.belongsToMany(models.drink, { through: models.mix });
+      ingredient.belongsToMany(models.drink, {
+        through: models.mix,
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   ingredient.init(

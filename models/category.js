@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       category.hasMany(models.drink, {
         foreignKey: "categoryId",
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       });
     }
   }

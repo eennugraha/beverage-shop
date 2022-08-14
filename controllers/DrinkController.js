@@ -1,19 +1,25 @@
-const { drink, mix, ingredient } = require("../models");
+const { drink, mix, ingredient, category } = require("../models");
 
 class DrinkController {
   static async getDrinks(req, res) {
     try {
-      let drinks = await drink.findAll();
-      res.json(drinks);
+      let drinks = await drink.findAll({
+        include: [category],
+        order: [["id", "asc"]],
+      });
+      res.render("drink.ejs", { drinks });
     } catch (err) {
       res.json(err);
     }
   }
 
-  static createPage(req, res) {
-    res.json({
-      message: "Create Drink Page",
-    });
+  static async createPage(req, res) {
+    try {
+      const categories = await category.findAll();
+      res.render("drinkCreatePage.ejs", { value: null, categories });
+    } catch (err) {
+      res.json(err);
+    }
   }
 
   // prettier-ignore
@@ -23,16 +29,21 @@ class DrinkController {
       let result = await drink.create({
         name, price, categoryId
       });
-      res.json(result);
+      res.redirect('/drinks');
     } catch (err) {
       res.json(err);
     }
   }
 
-  static editPage(req, res) {
-    res.json({
-      message: "Edit Drink Page",
-    });
+  static async editPage(req, res) {
+    try {
+      const id = +req.params.id;
+      const result = await drink.findByPk(id);
+      const categories = await category.findAll();
+      res.render("drinkEditPage.ejs", { result, categories });
+    } catch (err) {
+      res.json(err);
+    }
   }
 
   // prettier-ignore
@@ -45,9 +56,7 @@ class DrinkController {
         },
         { where: { id } }
       );
-      result[0] === 1
-        ? res.json({ message: `Drink with id: ${id} has been updated!` })
-        : res.json({ message: `Drink with id: ${id} is not found!` });
+      res.redirect('/drinks');
     } catch (err) {
       res.json(err);
     }
@@ -62,9 +71,8 @@ class DrinkController {
       // let resultMix = await mix.destroy({
       //   where: { ingredientId: id },
       // });
-      resultDrink === 1
-        ? res.json({ message: `Ingredient with id: ${id} has been deleted!` })
-        : res.json({ message: `Ingredient with id: ${id} is not found!` });
+
+      res.redirect("/drinks");
     } catch (err) {
       res.json(err);
     }
