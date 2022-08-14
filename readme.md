@@ -161,6 +161,339 @@ This is an example of how to list things you need to use the software and how to
     ]
   ```
 
+- GET '/ingredients/add'
+
+  ```sh
+  // request
+  localhost:3000/ingredients/add
+
+  // response
+  Ingredient Add Page
+  ```
+
+- POST '/ingredients/add'
+
+  ```sh
+  // request
+  localhost:3000/ingredients/add
+
+  name: 'Orange',
+  stock: 123
+
+  // response
+    {
+    "id": 14,
+    "name": "Orange",
+    "stock": 150,
+    "updatedAt": "2022-08-14T14:10:53.393Z",
+    "createdAt": "2022-08-14T14:10:53.393Z"
+    }
+  ```
+
+- GET '/ingredients/edit/:id'
+
+  ```sh
+  // request
+  localhost:3000/ingredients/edit/:14
+
+  name: 'Jeruk',
+  stock: 150
+
+  // response
+    {
+    "id": 14,
+    "name": "Orange",
+    "stock": 150,
+    "updatedAt": "2022-08-14T14:10:53.393Z",
+    "createdAt": "2022-08-14T14:10:53.393Z"
+    }
+  ```
+
+- GET '/ingredients/delete/:id'
+
+  ```sh
+  // request
+  localhost:3000/ingredients/delete/:14
+
+  // response
+  {
+    message: 'Ingredient with id: 14 has been deleted!'
+  }
+  ```
+
+  ***
+
+  category
+
+- GET '/categories'
+
+  ```sh
+  // request
+  localhost:3000/categories
+
+  // response
+    [
+        {
+            "id": 1,
+            "name": "Coffee",
+            "createdAt": "2022-08-14T08:24:40.041Z",
+            "updatedAt": "2022-08-14T08:24:40.041Z"
+        },
+        {
+            "id": 2,
+            "name": "Tea",
+            "createdAt": "2022-08-14T08:24:50.092Z",
+            "updatedAt": "2022-08-14T08:24:50.092Z"
+        }
+    ]
+  ```
+
+- GET '/categories/add'
+
+  ```sh
+  // request
+  localhost:3000/categories/add
+
+  // response
+  Category Add Page
+  ```
+
+- POST '/categories/add'
+
+  ```sh
+  // request
+  localhost:3000/categories/add
+
+  name: 'Juice'
+
+  // response
+    {
+    "id": 3,
+    "name": "Juice",
+    "updatedAt": "2022-08-14T14:10:53.393Z",
+    "createdAt": "2022-08-14T14:10:53.393Z"
+    }
+  ```
+
+- GET '/categories/edit/:id'
+
+  ```sh
+  // request
+  localhost:3000/categories/edit/:3
+
+  name: 'Shakes'
+
+  // response
+    {
+    "id": 3,
+    "name": "Shakes",
+    "updatedAt": "2022-08-14T14:10:53.393Z",
+    "createdAt": "2022-08-14T14:10:53.393Z"
+    }
+  ```
+
+- GET '/categories/delete/:id'
+
+  ```sh
+  // request
+  localhost:3000/categories/delete/:3
+
+  // response
+  {
+    message: 'Category with id: 3 has been deleted!'
+  }
+  ```
+
+---
+
+drink
+
+- GET '/drinks'
+
+  ```sh
+  // request
+  localhost:3000/drinks
+
+  // response
+    [
+        {
+            "id": 1,
+            "name": "Caramel Latte",
+            "price": 25000,
+            "categoryId": 1,
+            "createdAt": "2022-08-14T08:24:40.041Z",
+            "updatedAt": "2022-08-14T08:24:40.041Z"
+        },
+        {
+            "id": 2,
+            "name": "Ices Tea",
+            "price": 15000,
+            "categoryId": 2,
+            "createdAt": "2022-08-14T08:24:50.092Z",
+            "updatedAt": "2022-08-14T08:24:50.092Z"
+        }
+    ]
+  ```
+
+- GET '/drinks/add'
+
+  ```sh
+  // request
+  localhost:3000/drinks/add
+
+  // response
+  Drink Add Page
+  ```
+
+- POST '/drinks/add'
+
+  ```sh
+  // request
+  localhost:3000/drinks/add
+
+  name: 'Lemon Tea',
+  price: 17000,
+  categoryId: 2
+
+  // response
+    {
+    "id": 3,
+    "name": "Lemon Tea",
+    "price": 17000,
+    "categoryId": 2,
+    "updatedAt": "2022-08-14T14:10:53.393Z",
+    "createdAt": "2022-08-14T14:10:53.393Z"
+    }
+  ```
+
+- GET '/drinks/edit/:id'
+
+  ```sh
+  // request
+  localhost:3000/drinks/edit/:3
+
+  name: 'Apple Juice',
+  price: 18000,
+  categoryId: 3
+
+  // response
+    {
+    "id": 3,
+    "name": "Apple Juice",
+    "price": 18000,
+    "categoryId": 3,
+    "updatedAt": "2022-08-14T14:10:53.393Z",
+    "createdAt": "2022-08-14T14:10:53.393Z"
+    }
+  ```
+
+- GET '/drinks/delete/:id'
+
+  ```sh
+  // request
+  localhost:3000/drinks/delete/:3
+
+  // response
+  {
+    message: 'Category with id: 3 has been deleted!'
+  }
+  ```
+
+---
+
+mix
+
+- GET '/mixes'
+
+  ```sh
+  // request
+  localhost:3000/mixes
+
+  // response
+    [
+        {
+            "id": 1,
+            "amount": 2,
+            "drinkId": 1,
+            "ingredientId": 1,
+            "createdAt": "2022-08-14T08:24:40.041Z",
+            "updatedAt": "2022-08-14T08:24:40.041Z"
+        },
+        {
+            "id": 2,
+            "name": 1,
+            "price": 1,
+            "ingredientId": 3,
+            "createdAt": "2022-08-14T08:24:50.092Z",
+            "updatedAt": "2022-08-14T08:24:50.092Z"
+        }
+    ]
+  ```
+
+- GET '/mixes/add'
+
+  ```sh
+  // request
+  localhost:3000/mixes/add
+
+  // response
+  Mix Add Page
+  ```
+
+- POST '/mixes/add'
+
+  ```sh
+  // request
+  localhost:3000/mixes/add
+
+  amount: 2,
+  drinkId: 1,
+  ingredientId: 5
+
+  // response
+    {
+    "id": 3,
+    "amount": 2,
+    "drinkId": 1,
+    "ingredientId": 5,
+    "updatedAt": "2022-08-14T14:10:53.393Z",
+    "createdAt": "2022-08-14T14:10:53.393Z"
+    }
+  ```
+
+- GET '/mixes/edit/:id'
+
+  ```sh
+  // request
+  localhost:3000/mixes/edit/:3
+
+  amount: 3,
+  drinkId: 1,
+  ingredientId: 6
+
+  // response
+    {
+    "id": 3,
+    "amount": 3,
+    "drinkId": 1,
+    "ingredientId": 6,
+    "updatedAt": "2022-08-14T14:10:53.393Z",
+    "createdAt": "2022-08-14T14:10:53.393Z"
+    }
+  ```
+
+- GET '/mixes/delete/:id'
+
+  ```sh
+  // request
+  localhost:3000/mixes/delete/:3
+
+  // response
+  {
+    message: 'Category with id: 3 has been deleted!'
+  }
+  ```
+
 ### Installation
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
