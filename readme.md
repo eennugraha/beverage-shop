@@ -77,7 +77,7 @@
 
 ## Entity Relationship Diagram
 
-[![PBeverage Shop][erd]](https://example.com)
+[![PBeverage Shop][product-erd]](https://example.com)
 
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
@@ -617,4 +617,4 @@ Use this space to list resources you find helpful and would like to give credit 
 [jquery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [jquery-url]: https://jquery.com
 [product-screenshot]: public/screenshot-homepage.png
-[product-screenshot]: public/erd.png
+[product-erd]: public/erd.png
