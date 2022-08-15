@@ -63,7 +63,7 @@ npx sequelize-cli model:generate --name mix --attributes amount:integer,drinkId:
 
 ### Endpoints
 
-This is an example of how to list things you need to use the software and how to install them.
+Berikut adalah daftar endpoints yang ada dalam aplikasi ini.
 
 | Method | Route                   | Keterangan                                                                               |
 | ------ | ----------------------- | ---------------------------------------------------------------------------------------- |
