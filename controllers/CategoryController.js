@@ -64,9 +64,9 @@ class CategoryController {
       let resultCategory = await category.destroy({
         where: { id },
       });
-      let resultDrink = await drink.destroy({
-        where: { categoryId: id },
-      });
+      // let resultDrink = await drink.destroy({
+      //   where: { categoryId: id },
+      // });
       res.redirect("/categories");
     } catch (err) {
       res.json(err);
