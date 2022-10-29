@@ -12,9 +12,6 @@ module.exports = (sequelize, DataTypes) => {
       drink.belongsTo(models.category);
       drink.belongsToMany(models.ingredient, {
         through: models.mix,
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
-        hooks: true,
       });
     }
   }
